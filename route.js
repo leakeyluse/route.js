@@ -79,7 +79,7 @@ function Router(app, entryPoint) {
 	});
 	
     //initialize
-    route(initialRoute, false, false, false);
+    route(initialRoute, false, false);
 	
     return {
         route: route
