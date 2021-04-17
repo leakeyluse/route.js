@@ -1,7 +1,8 @@
 function Router(app, entryPoint) {
     var initialRoute = window.location.pathname,
-        currentPath = initialRoute,
-	
+    	currentPath = initialRoute,
+	rMethod = "POST";
+
 	function fetchAsync(queryMethod, queryStr, targetUrl, callBackFunc) { 
 		if (!navigator.onLine) {
 			callBackFunc(null);
@@ -26,10 +27,10 @@ function Router(app, entryPoint) {
 					callBackFunc(null);
 					return;
 				}
-				
+
 			}
 		};
-		
+
 		xhr.open(queryMethod, targetUrl, true);
 		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xhr.send(queryStr);
@@ -51,7 +52,6 @@ function Router(app, entryPoint) {
     function fetchRoute(path) {
         //update path        
         currentPath = path;
-		rMethod = "POST";
 		fetchAsync(rMethod, "route=" + currentPath, entryPoint, function (response) {
 			if (response !== null) {
 				document.title = response.title;
